@@ -2,7 +2,7 @@ package cct.s2015250.weather;
 
 import cct.s2015250.weather.payload.WeatherData;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,11 +13,15 @@ public class ForecastGateway {
 
     String url = "http://www.yr.no/place/Ireland/Leinster/Dublin/forecast.xml";
 
-    @Autowired
     RestTemplate restTemplate;
+    XmlMapper xmlMapper;
+
+    public ForecastGateway() {
+        xmlMapper = new XmlMapper();
+        restTemplate = new RestTemplateBuilder().build();
+    }
 
     public WeatherData requestForecast() throws IOException {
-        XmlMapper xmlMapper = new XmlMapper();
         String xmlPayload = restTemplate.getForObject(url, String.class);
         WeatherData weatherData = xmlMapper.readValue(xmlPayload, WeatherData.class);
         return weatherData;
