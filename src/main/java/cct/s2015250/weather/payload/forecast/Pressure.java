@@ -4,7 +4,7 @@ package cct.s2015250.weather.payload.forecast;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@JacksonXmlRootElement(localName = "tabular")
+@JacksonXmlRootElement(localName = "pressure")
 public class Pressure {
     @JacksonXmlProperty(isAttribute = true)
     String unit;

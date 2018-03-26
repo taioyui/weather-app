@@ -12,6 +12,7 @@ import java.io.IOException;
 public class ForecastGateway {
 
     String url = "http://www.yr.no/place/Ireland/Leinster/Dublin/forecast.xml";
+    String urlHourly = "http://www.yr.no/place/Ireland/Leinster/Dublin/forecast_hour_by_hour.xml";
 
     RestTemplate restTemplate;
     XmlMapper xmlMapper;
@@ -21,8 +22,14 @@ public class ForecastGateway {
         restTemplate = new RestTemplateBuilder().build();
     }
 
-    public WeatherData requestForecast() throws IOException {
+    public WeatherData requestForecast10days() throws IOException {
         String xmlPayload = restTemplate.getForObject(url, String.class);
+        WeatherData weatherData = xmlMapper.readValue(xmlPayload, WeatherData.class);
+        return weatherData;
+    }
+
+    public WeatherData requestForecastHourly() throws IOException {
+        String xmlPayload = restTemplate.getForObject(urlHourly, String.class);
         WeatherData weatherData = xmlMapper.readValue(xmlPayload, WeatherData.class);
         return weatherData;
     }
