@@ -2,7 +2,6 @@ package cct.s2015250.weather;
 
 
 import cct.s2015250.weather.payload.WeatherData;
-import cct.s2015250.weather.payload.forecast.Tabular;
 import cct.s2015250.weather.payload.forecast.Time;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +10,8 @@ public class RealFeelProcessor {
 
 
     public WeatherData calculateRealFeel(WeatherData weatherData) {
-        weatherData.getForecast().getTabular().getTime().forEach(t -> t.setRealFeel(calculateRealFeel(t)));
+        weatherData.getForecast().getTabular().getTime().get(0).setRealFeel(
+                calculateRealFeel(weatherData.getForecast().getTabular().getTime().get(0)));
         return weatherData;
     }
 

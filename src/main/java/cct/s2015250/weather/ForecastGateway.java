@@ -22,7 +22,7 @@ public class ForecastGateway {
         restTemplate = new RestTemplateBuilder().build();
     }
 
-    public WeatherData requestForecast10days() throws IOException {
+    public WeatherData requestForecast5days() throws IOException {
         String xmlPayload = restTemplate.getForObject(url, String.class);
         WeatherData weatherData = xmlMapper.readValue(xmlPayload, WeatherData.class);
         return weatherData;

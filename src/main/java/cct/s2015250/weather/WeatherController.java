@@ -16,10 +16,13 @@ public class WeatherController {
     @Autowired
     RealFeelProcessor realFeelProcessor;
 
-    @RequestMapping("/10days")
-    public WeatherData requestForecast10days() throws IOException {
-        WeatherData  weatherData = forecastGateway.requestForecast10days();
-        return realFeelProcessor.calculateRealFeel(weatherData);
+    @Autowired
+    CustomFieldsProcessor customFieldsProcessor;
+
+    @RequestMapping("/5days")
+    public WeatherData requestForecast5days() throws IOException {
+        WeatherData  weatherData = forecastGateway.requestForecast5days();
+        return customFieldsProcessor.calculateCustomFields(realFeelProcessor.calculateRealFeel(weatherData));
     }
 
 

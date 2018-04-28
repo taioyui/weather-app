@@ -30,6 +30,12 @@ public class Time {
     @JacksonXmlProperty
     private Pressure pressure;
 
+    @JacksonXmlProperty
+    private Temperature minTemperature;
+
+    @JacksonXmlProperty
+    private Temperature maxTemperature;
+
     public String getFrom() {
         return from;
     }
@@ -108,5 +114,21 @@ public class Time {
 
     public void setRealFeel(String realFeel) {
         this.realFeel = realFeel;
+    }
+
+    public Temperature getMinTemperature() {
+        return minTemperature;
+    }
+
+    public void setMinTemperature(Temperature minTemperature) {
+        this.minTemperature = minTemperature;
+    }
+
+    public Temperature getMaxTemperature() {
+        return maxTemperature;
+    }
+
+    public void setMaxTemperature(Temperature maxTemperature) {
+        this.maxTemperature = maxTemperature;
     }
 }

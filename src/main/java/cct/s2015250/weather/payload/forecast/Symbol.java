@@ -46,7 +46,11 @@ public class Symbol {
     }
 
     public void setVar(String var) {
+
         this.var = var;
     }
+
+
+
 }
 
